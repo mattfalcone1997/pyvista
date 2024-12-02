@@ -307,7 +307,7 @@ if _vtk.vtk_version_info < (9, 3):
 
             """
             self.Update()
-            return cast(pyvista.PolyData, wrap(self.GetOutput()))
+            return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -566,7 +566,7 @@ class ConeSource(_vtk.vtkConeSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -833,7 +833,7 @@ class CylinderSource(_vtk.vtkCylinderSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -894,7 +894,7 @@ class MultipleLinesSource(_vtk.vtkLineSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 class Text3DSource(vtkVectorText):
@@ -1120,7 +1120,7 @@ class Text3DSource(vtkVectorText):
             self._modified = False
 
     @property
-    def output(self: Text3DSource) -> _vtk.vtkPolyData:  # numpydoc ignore=RT01
+    def output(self: Text3DSource) -> PolyData:  # numpydoc ignore=RT01
         """Get the output of the source.
 
         The source is automatically updated by :meth:`update` prior
@@ -1377,7 +1377,7 @@ class CubeSource(_vtk.vtkCubeSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
     @property
     def point_dtype(self: CubeSource) -> str:
@@ -1614,7 +1614,7 @@ class DiscSource(_vtk.vtkDiskSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -1733,7 +1733,7 @@ class LineSource(_vtk.vtkLineSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -2031,7 +2031,7 @@ class SphereSource(_vtk.vtkSphereSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -2215,7 +2215,7 @@ class PolygonSource(_vtk.vtkRegularPolygonSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -2312,7 +2312,7 @@ class PlatonicSolidSource(_vtk.vtkPlatonicSolidSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -2524,7 +2524,7 @@ class PlaneSource(_vtk.vtkPlaneSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
     @property
     def normal(self: PlaneSource) -> tuple[float, float, float]:  # numpydoc ignore: RT01
@@ -2724,7 +2724,7 @@ class ArrowSource(_vtk.vtkArrowSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -2839,7 +2839,7 @@ class BoxSource(_vtk.vtkTessellatedBoxSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 @no_new_attr
@@ -3138,7 +3138,7 @@ class SuperquadricSource(_vtk.vtkSuperquadricSource):
 
         """
         self.Update()
-        return cast(pyvista.PolyData, wrap(self.GetOutput()))
+        return wrap(self.GetOutput())
 
 
 class _AxisEnum(IntEnum):
