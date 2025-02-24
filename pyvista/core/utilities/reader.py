@@ -3614,6 +3614,46 @@ class ExodusIIBlockSet:
         return status_method(name)
 
 
+class PExodusIIReader(ExodusIIReader):
+    """PExodusIIReader is a reader for parallel Exodus II files."""
+
+    _vtk_module_name = 'vtkIOParallelExodus'
+    _vtk_class_name = 'vtkPExodusIIReader'
+
+    @property
+    def path(self) -> str:
+        """Return or set the filename or directory of the reader.
+
+        Examples
+        --------
+        >>> import pyvista as pv
+        >>> from pyvista import examples
+        >>> filename = examples.download_human(load=False)
+        >>> reader = pv.XMLPolyDataReader(filename)
+        >>> reader.path  # doctest:+SKIP
+        '/home/user/.local/share/pyvista/examples/Human.vtp'
+
+        """
+        if self._filename is not None:
+            return self._filename
+        return self.__directory  # type: ignore[return-value]
+
+    @path.setter
+    def path(self, path: str | Path):
+        from vtkmodules.vtkParallelCore import vtkDummyController
+        self.reader.SetController(vtkDummyController())
+
+        if Path(path).is_file():
+            self.reader.SetFileName(path)
+
+        else:
+            self.reader.SetFilePrefix(path)
+            self.reader.SetFilePattern("%s.4.%d")
+            self.reader.SetFileRange(0,3)
+            self._filename = path
+            self._update_information()
+
+
 CLASS_READERS = {
     # Standard dataset readers:
     '.bmp': BMPReader,
